@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
   end
   
   patch '/articles/:id' do
-    @game = Game.find_by_id(params[:id])
+    @article = Article.find_by_id(params[:id])
     @game.name = params[:name]
     @game.genre = params[:genre]
     @game.save
