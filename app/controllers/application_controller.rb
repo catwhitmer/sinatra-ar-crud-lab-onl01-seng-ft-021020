@@ -38,11 +38,11 @@ class ApplicationController < Sinatra::Base
   end
   
   patch '/articles/:id' do
-      @article = Article.find_by_id(params[:id])
-      @article.title = params[:title]
-      @article.content = params[:content]
-      @article.save
+    Article.find(params[:id]).each do |article|
+      article.update(title: params[:title], content: params[:content])
+      article.save
       redirect "/articles/#{@article.id}"
+    end
   end
   
   delete '/articles/:id' do
